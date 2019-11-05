@@ -10,7 +10,7 @@ class SortedTable:
 
     def getID(self, value):
         for i in self.__content:
-            if i[0] == value:
+            if i[0].strip(" ") == value.strip(" "):
                 return i[1]
         return -1
 

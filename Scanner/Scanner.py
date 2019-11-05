@@ -5,11 +5,12 @@ import re
 
 def isIdentifier(token):
     token = token.strip(" ")
-    print('"' + token + '"')
 
     return re.fullmatch(r'[A-Z]{0,7}', token) is not None
 
 def isConstant(token):
+    token = token.strip(" ")
+
     return re.match('^(0|[\+\-]?[1-9][0-9]*)$|^\'.\'$|^\".*\"$', token) is not None
 
 def isEscapedQuote(line, index):

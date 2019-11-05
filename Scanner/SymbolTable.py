@@ -8,7 +8,7 @@ class SymbolTable:
 
     def add(self, value):
         self.__content.add(value)
-        return self.__content.getID(value)
+        return self.getPos(value)
 
     def getPos(self, value):
         return self.__content.getID(value)
@@ -21,3 +21,9 @@ class SymbolTable:
         file = open(name, 'w')
         file.write(str(table))
         file.close()
+
+    def __str__(self):
+        table = PrettyTable(['POS', self.__tableType + ' NAME'])
+        for item in self.__content.getContent():
+            table.add_row([item[1], item[0]])
+        return str(table)
