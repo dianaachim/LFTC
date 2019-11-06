@@ -11,7 +11,7 @@ def isIdentifier(token):
 def isConstant(token):
     token = token.strip(" ")
 
-    return re.match('^(0|[\+\-]?[1-9][0-9]*)$|^\'.\'$|^\".*\"$', token) is not None
+    return re.match('^(0|[1-9][0-9]*)$|^\'[a-zA-Z]\'$|^\".*\"$', token) is not None
 
 def isEscapedQuote(line, index):
     if index == 0:
@@ -108,14 +108,15 @@ class Scanner:
                 for token in self.tokenGenerator(line.strip()):
                     if token == ' ':
                         continue
+                    elif isConstant(token):
+                        stPos = self.__symbolTableConstants.add(token)
+                        self.__PIF.addToken(self.__codificationTable["constant"], stPos)
                     elif token in self.__codificationTable.keys():
                         self.__PIF.addToken(self.__codificationTable[token], -1)
                     elif isIdentifier(token):
                         stPos = self.__symbolTableIdentifiers.add(token)
                         self.__PIF.addToken(self.__codificationTable["identifier"], stPos)
-                    elif isConstant(token):
-                        stPos = self.__symbolTableConstants.add(token)
-                        self.__PIF.addToken(self.__codificationTable["constant"], stPos)
+
                     else:
                         raise Exception("Unknown token " + token + " at line " + str(lineNumnber))
         file.close()

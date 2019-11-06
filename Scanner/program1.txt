@@ -1,7 +1,8 @@
 program TEST;
-    var A , B : integer ;
+    var A , B: integer ;
     begin
-        A := -2;
-        B :=3;
-        write ( A + B ) ;
+        A:=2;
+        B:=3;
+        write (A+B) ;
+        '#'
     end .

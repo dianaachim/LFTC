@@ -1,0 +1,13 @@
+program TEST;
+    var A , B , S : integer ;
+    begin
+        A :=2;
+        B :=3;
+        S :=0;
+        while ( B > 1 ) do
+            begin
+            S := S + B ;
+            B := B - 1;
+            end ;
+        write ( S ) ;
+    end .
